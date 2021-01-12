@@ -2,6 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import store from './store'
 import Login from './components/login'
+import Dashboard from './components/dashboard'
 import Holdings from './components/holdings'
 
 Vue.use(Router)
@@ -18,6 +19,14 @@ let router = new Router({
       path: '/login',
       name: 'login',
       component: Login
+    },
+    {
+      path: '/dashboard',
+      name: 'dashboard',
+      component: Dashboard,
+      meta: {
+        requiresAuth: true
+      }
     },
     {
       path: '/propiedades',
