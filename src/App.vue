@@ -1,27 +1,22 @@
 <template>
-  <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/propiedades">About</router-link><span v-if="isLoggedIn"> | <a @click="logout">Logout</a></span>
-    </div>
-    <router-view/>
+  <div id="app" class="d-flex">
+    <navigation />
+    <main class="d-flex justify-content-center align-items-center align-self-center">
+      <router-view />
+    </main>
   </div>
 </template>
 
 <script>
+import "./assets/styles/main.scss"
+import navigation from "./components/navigation"
 
 export default {
   name: 'App',
-  computed : {
-    isLoggedIn : function(){ return this.$store.getters.isLoggedIn}
+  components: {
+    navigation,
   },
   methods: {
-    logout: function () {
-      this.$store.dispatch('logout')
-      .then(() => {
-        this.$router.push('/login')
-      })
-    },
     created: function () {
       this.$http.interceptors.response.use(undefined, function (err) {
         return new Promise(function () {

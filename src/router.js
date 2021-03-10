@@ -4,6 +4,9 @@ import store from './store'
 import Login from './components/login'
 import Dashboard from './components/dashboard'
 import Holdings from './components/holdings'
+import SingleHolding from './components/holdings/single'
+import Venues from './components/venues'
+import Clients from './components/clients'
 
 Vue.use(Router)
 
@@ -13,20 +16,15 @@ let router = new Router({
     {
       path: '/',
       name: 'home',
-      component: Login
+      component: Dashboard,
+      meta: {
+        requiresAuth: true
+      }
     },
     {
       path: '/login',
       name: 'login',
       component: Login
-    },
-    {
-      path: '/dashboard',
-      name: 'dashboard',
-      component: Dashboard,
-      meta: {
-        requiresAuth: true
-      }
     },
     {
       path: '/propiedades',
@@ -35,7 +33,31 @@ let router = new Router({
       meta: {
         requiresAuth: true
       }
-    }
+    },
+    {
+      path: '/propiedad/:id',
+      name: 'Single Holding',
+      component: SingleHolding,
+      meta: {
+        requiresAuth: true
+      }
+    },
+    {
+      path: '/sucursales',
+      name: 'Venues',
+      component: Venues,
+      meta: {
+        requiresAuth: true
+      }
+    },
+    {
+      path: '/clientes',
+      name: 'Clients',
+      component: Clients,
+      meta: {
+        requiresAuth: true
+      }
+    },
   ]
 })
 
